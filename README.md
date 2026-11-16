@@ -26,9 +26,9 @@ python run_analysis.py --smoke
 python run_analysis.py
 ```
 
-(PowerShell:** activate with `.venv\Scripts\Activate.ps1` and use `python` instead of `python3` to create the environment, if necessary.)
+(PowerShell: activate with `.venv\Scripts\Activate.ps1` and use `python` instead of `python3` to create the environment, if necessary.)
 
-The exact reproducibility command is **`python run_analysis.py`**. It loads `data/urban_features.csv`, evaluates both baselines and both trained models (plus the PCA experiment), prints all four model scores, asserts the saved headline scores within `1e-5`, and saves the executed notebook as `UrbanSound_reproduced.ipynb`. Nested cross-validation is computationally expensive, so this script does not download the large WAV collection.
+The exact reproducibility command to create a new notebook is **`python run_analysis.py`**. It loads `data/urban_features.csv`, evaluates both baselines and both trained models (plus the PCA experiment), prints all four model scores, asserts the saved headline scores within `1e-5`, and saves the executed notebook as `UrbanSound_reproduced.ipynb`. Nested cross-validation is computationally expensive, so this script does not download the large WAV collection.
 
 Quick imports/data/first-figure sanity check without running model evaluation:
 
