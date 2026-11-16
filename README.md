@@ -2,11 +2,11 @@
 
 **Decision:** Flag audio segments that may contain drilling or jackhammer sounds for review by municipal staff, **not** automated enforcement. False positives consume staff review time; false negatives miss relevant events. Primary metric: **F0.5**, emphasizing precision.
 
-**Reproduced headline:** unweighted mean F0.5 over the ten *original* UrbanSound8K held-out folds: **L2 logistic regression 0.933389**, **random forest 0.935408**. Declared baselines on the same metric/splits: **all-positive 0.554009**, **loudness-only approximately 0.6744**. The recommendation favors no-PCA logistic regression as the simpler candidate pending field validation.
+**Reproduced headline:** unweighted mean F0.5 over the ten original UrbanSound8K held-out folds: **L2 logistic regression 0.933389**, **random forest 0.935408**. Declared baselines on the same metric/splits: **all-positive 0.554009**, **loudness-only approximately 0.6744**. The recommendation favors no-PCA logistic regression as the simpler candidate pending field validation.
 
 ## Reproduce the headline from a fresh clone
 
-Run these commands **from the repository root** in a terminal with Python 3.11+ installed:
+Run these commands from the repository root in a terminal with Python 3.11+ installed:
 
 ```bash
 python3 -m venv .venv
@@ -15,9 +15,9 @@ python -m pip install -r requirements.txt
 python run_analysis.py
 ```
 
-**Windows PowerShell:** activate with `.venv\Scripts\Activate.ps1` and use `python` instead of `python3` to create the environment, if necessary.
+(PowerShell:** activate with `.venv\Scripts\Activate.ps1` and use `python` instead of `python3` to create the environment, if necessary.)
 
-The exact reproducibility command is **`python run_analysis.py`**. It loads `data/urban_features.csv`, evaluates both baselines and both trained models (plus the PCA experiment), prints all four model scores, asserts the saved headline scores within `1e-5`, and saves the executed notebook as `UrbanSound_reproduced.ipynb`. **Nested cross-validation is computationally expensive**; this script does not download the large WAV collection.
+The exact reproducibility command is **`python run_analysis.py`**. It loads `data/urban_features.csv`, evaluates both baselines and both trained models (plus the PCA experiment), prints all four model scores, asserts the saved headline scores within `1e-5`, and saves the executed notebook as `UrbanSound_reproduced.ipynb`. Nested cross-validation is computationally expensive, so this script does not download the large WAV collection.
 
 Quick imports/data/first-figure sanity check without running model evaluation:
 
