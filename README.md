@@ -5,17 +5,23 @@
 **Reproduced headline:** unweighted mean F0.5 over the ten original UrbanSound8K held-out folds: **L2 logistic regression 0.933389**, **random forest 0.935408**. Declared baselines on the same metric/splits: **all-positive 0.554009**, **loudness-only approximately 0.6744**. The recommendation favors no-PCA logistic regression as the simpler candidate pending field validation.
 
 ## Reproduce the headline from a fresh clone
+**This analysis was developed and tested with Python 3.14.7. Using other version may require dependency update changes and have not been independently verified.**
+**Another faster-running method is to walk through UrbanSound.ipynb cell-by-cell**
+Run these commands from the repository root in a terminal:
 
-Run these commands from the repository root in a terminal with Python 3.11+ installed:
-(uses Python 3.14.7)
-
+Ensure Python 3.14 is installed and available on your system.
 ```bash
+python3.14 --version
 python3.14 -m venv .venv
 source .venv/bin/activate
-
+```
+```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+```
 
+Use the smoke flag for a quick imports/data/first-figure sanity check without the running model evaluation.
+```bash
 python run_analysis.py --smoke
 python run_analysis.py
 ```
@@ -26,9 +32,6 @@ The exact reproducibility command is **`python run_analysis.py`**. It loads `dat
 
 Quick imports/data/first-figure sanity check without running model evaluation:
 
-```bash
-python run_analysis.py --smoke
-```
 
 ## Files
 
