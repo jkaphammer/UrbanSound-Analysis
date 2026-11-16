@@ -7,11 +7,16 @@
 ## Reproduce the headline from a fresh clone
 
 Run these commands from the repository root in a terminal with Python 3.11+ installed:
+(uses Python 3.14.7)
 
 ```bash
-python3 -m venv .venv
+python3.14 -m venv .venv
 source .venv/bin/activate
+
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+
+python run_analysis.py --smoke
 python run_analysis.py
 ```
 
@@ -25,10 +30,10 @@ Quick imports/data/first-figure sanity check without running model evaluation:
 python run_analysis.py --smoke
 ```
 
-## Files and provenance
+## Files
 
-- `UrbanSound_Reviewed_Visualized.ipynb`: complete analysis, seven plots, subgroup confidence intervals, decision discussion, and an editable AI-use appendix draft.
-- `data/urban_features.csv`: **included** extracted feature table (4,000 rows, 55 columns); no network access required for model evaluation.
+- `UrbanSound.ipynb`: Contains complete analysis, plots, subgroup confidence intervals, decision discussion.
+- `data/urban_features.csv`: (already included) extracted feature table (4,000 rows, 55 columns); no network access required for model evaluation.
 - `run_analysis.py`: executes the notebook from imports onwards while **skipping Section 1**, which is an optional extraction workflow requiring approximately 6 GB of audio files.
 - `requirements.txt`: Python packages required by notebook and runner.
 
@@ -39,7 +44,7 @@ The features were produced from the UrbanSound8K dataset (four classes: children
 - Original ten UrbanSound8K folds are kept intact: 9 outer training folds and 1 held-out fold per iteration.
 - Within each outer training partition, `LeaveOneGroupOut` chooses hyperparameters and classification threshold using the remaining fold IDs.
 - Scaling and PCA are fit inside the training partitions, not on test recordings.
-- Main score is **mean outer-fold F0.5**, whereas R5 subgroup F0.5 pools the held-out predictions within each subgroup.
+- Main score is mean outer-fold F0.5, whereas R5 subgroup F0.5 pools the held-out predictions within each subgroup.
 - Fixed randomness uses `random_state=42` for models and seed 42 for fold-bootstrap intervals; bootstrap uncertainty is approximate because it resamples only ten folds.
 
 ## Important limitations

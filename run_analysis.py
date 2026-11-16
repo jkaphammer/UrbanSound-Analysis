@@ -6,7 +6,15 @@ Usage: python run_analysis.py            # complete nested-CV evaluation
 from pathlib import Path
 import argparse
 import nbformat
+import sys
 from nbclient import NotebookClient
+
+# require 3.14.x
+if sys.version_info[:2] != (3, 14):
+    raise SystemExit(
+        "UrbanSound was tested using Python 3.14. "
+        f"Current version: {sys.version.split()[0]}"
+    )
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--smoke', action='store_true', help='Only run imports/data/baselines to verify setup')
